@@ -2,6 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import {
   LengthUnit,
+  Setting,
   SpeedUnit,
   TempertureUnit,
   WeightUnit,
@@ -20,6 +21,7 @@ export interface SettingState {
   tempertureUnit: TempertureUnit;
   storeType: StoreType;
   savingSettings: boolean;
+  loaded: boolean;
 }
 
 export const initialState: SettingState = {
@@ -32,6 +34,7 @@ export const initialState: SettingState = {
   tempertureUnit: TempertureUnit.Fahrenheit,
   storeType: StoreType.Settings,
   savingSettings: false,
+  loaded: false,
 };
 
 const featureReducer = createReducer(
@@ -44,7 +47,14 @@ const featureReducer = createReducer(
   on(fromActions.saveSettingsSuccess, (state, action) => ({
     ...state,
     savingSettings: false,
-  }))
+  })),
+  on(fromActions.loadSettingsSuccess, (state, action) => {
+    return {
+      ...state,
+      ...action.settings,
+      loaded: true,
+    };
+  })
 );
 
 export function reducer(state: SettingState | undefined, action: Action) {

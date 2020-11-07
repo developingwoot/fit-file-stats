@@ -71,6 +71,20 @@ export class DataStore {
     });
   }
 
+  findOne(query: any): any {
+    return new Observable((observer) => {
+      this.db.find(query, (error, results) => {
+        if (error) {
+          observer.error(error);
+        } else {
+          observer.next(results[0]);
+        }
+
+        observer.complete();
+      });
+    });
+  }
+
   importFile(file: any): void {
     // Create a FitParser instance (options argument is optional)
     var fitParser = new fit.default({

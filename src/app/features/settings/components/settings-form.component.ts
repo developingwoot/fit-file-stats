@@ -83,13 +83,14 @@ export class SettingsFormComponent implements OnChanges {
     unit: ['imperial'],
   });
 
-  imported: boolean;
+  imported = false;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnChanges() {
     if (this.settings && !this.imported) {
       this.form.patchValue(this.settings);
+      this.imported = true;
     }
   }
 

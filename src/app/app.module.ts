@@ -18,6 +18,7 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { effects } from './store/effects';
 
+import * as fromResolvers from './base/resolvers';
 import { NavSideComponent } from './nav-side/nav-side.component';
 
 @NgModule({
@@ -38,7 +39,7 @@ import { NavSideComponent } from './nav-side/nav-side.component';
     }),
     EffectsModule.forRoot(effects),
   ],
-  providers: [],
+  providers: [...fromResolvers.resolvers],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

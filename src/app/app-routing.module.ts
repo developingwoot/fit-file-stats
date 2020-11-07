@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import * as fromResolvers from './base/resolvers';
+
 const routes: Routes = [
   {
     path: 'import',
@@ -13,6 +15,7 @@ const routes: Routes = [
       import('./features/settings/settings.module').then(
         (m) => m.SettingsModule
       ),
+    resolve: [fromResolvers.SettingsResolver],
   },
 ];
 

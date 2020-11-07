@@ -10,7 +10,10 @@ import * as fromContainers from './containers';
 import * as fromComponents from './components';
 
 const routes: Routes = [
-  { path: '', component: fromContainers.SettingsComponent },
+  {
+    path: '',
+    component: fromContainers.SettingsComponent,
+  },
   { path: '**', redirectTo: '' },
 ];
 

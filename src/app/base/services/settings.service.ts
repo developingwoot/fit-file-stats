@@ -12,7 +12,7 @@ export class SettingsService extends DataStore {
   }
 
   getSettings(): Observable<Setting> {
-    return this.find({ storeType: StoreType.Settings });
+    return this.findOne({ storeType: StoreType.Settings });
   }
 
   updateSettings(settings: Setting): Observable<Setting> {
